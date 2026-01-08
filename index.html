@@ -5,7 +5,7 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 const SUPABASE_URL = "https://fwirtycqfyvsebnqmjux.supabase.co";
 const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ3aXJ0eWNxZnl2c2VibnFtanV4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc4Njc1MjIsImV4cCI6MjA4MzQ0MzUyMn0.Y_kOH4c2VPlWbOHCB9fza8oH4Rm56kYTKuIlVZtVbvU";
 
-const supabase = createClient(SUPABASE_URL,SUPABASE_KEY);
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // DOM
 const input = document.getElementById("nickname");
@@ -68,4 +68,3 @@ async function loadQueue() {
 // 初始載入
 loadQueue();
 </script>
-
