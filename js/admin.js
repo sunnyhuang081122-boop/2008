@@ -1,4 +1,3 @@
-alert("admin.js 有跑");
 
 import { supabase } from "../supabase.js";
 
@@ -9,11 +8,6 @@ async function loadAll() {
     .from("queue")
     .select("*")
     .order("created_at", { ascending: true });
-
-  alert(
-    "data 筆數：" + (data ? data.length : "null") +
-    "\nerror：" + (error ? error.message : "沒有")
-  );
 
   list.innerHTML = "";
   (data || []).forEach((item) => {
