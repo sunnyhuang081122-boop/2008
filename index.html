@@ -4,338 +4,35 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>二日畫室｜排單系統</title>
-
-  <style>
-    :root{
-      --bg: #fdeef3;
-      --card: #ffffff;
-      --text: #222;
-      --muted: #8a8a8a;
-      --pink: #f4a7b9;
-      --pink-2:#ffd6df;
-      --shadow: 0 18px 40px rgba(0,0,0,.08);
-      --radius: 18px;
-    }
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
-      background: radial-gradient(1200px 600px at 20% 0%, #fff6f9 0%, var(--bg) 55%, #fbe4eb 100%);
-      color:var(--text);
-    }
-
-    .wrap{
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 28px 18px 40px;
-    }
-
-    /* 只有大標在卡片外 */
-    .brand{
-      font-weight: 900;
-      letter-spacing: 2px;
-      font-size: 44px;
-      margin: 6px 0 18px;
-    }
-
-    .card{
-      background: var(--card);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 18px;
-      margin: 14px 0;
-      position: relative;
-      overflow:hidden;
-    }
-
-    /* 小插圖裝飾（不是 emoji） */
-    .card::before{
-      content:"";
-      position:absolute;
-      top:-40px; right:-40px;
-      width:140px; height:140px;
-      background: radial-gradient(circle at 30% 30%, #fff 0 28%, var(--pink-2) 29% 70%, rgba(255,255,255,0) 71%);
-      opacity:.85;
-      transform: rotate(12deg);
-    }
-    .card::after{
-      content:"";
-      position:absolute;
-      bottom:-30px; left:-30px;
-      width:120px; height:120px;
-      background: radial-gradient(circle at 60% 60%, #fff 0 28%, #ffe8ee 29% 70%, rgba(255,255,255,0) 71%);
-      opacity:.7;
-      transform: rotate(-10deg);
-    }
-
-    .card h2{
-      margin: 4px 0 12px;
-      font-size: 18px;
-      letter-spacing: 1px;
-    }
-
-    .row{
-      display:flex;
-      gap: 10px;
-      align-items:center;
-      flex-wrap: wrap;
-    }
-
-    input{
-      flex: 1 1 220px;
-      min-width: 220px;
-      height: 44px;
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,.12);
-      padding: 0 12px;
-      outline:none;
-      font-size: 16px;
-      background: #fff;
-    }
-    input:focus{
-      border-color: rgba(244,167,185,.85);
-      box-shadow: 0 0 0 4px rgba(244,167,185,.18);
-    }
-
-    .btn{
-      height: 44px;
-      padding: 0 16px;
-      border:none;
-      border-radius: 12px;
-      background: linear-gradient(180deg, #f7b2c3, #f1a0b4);
-      color: #fff;
-      font-weight: 800;
-      letter-spacing: 1px;
-      cursor:pointer;
-      box-shadow: 0 10px 20px rgba(241,160,180,.25);
-    }
-    .btn:disabled{
-      opacity:.6;
-      cursor:not-allowed;
-      box-shadow:none;
-    }
-
-    .hint{
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    /* 排單列表 */
-    #queueList{
-      display:flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 8px;
-    }
-
-    .queue-item{
-      background: #fff;
-      border-radius: 16px;
-      padding: 14px 14px;
-      box-shadow: 0 10px 24px rgba(0,0,0,.06);
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      position: relative;
-      overflow:hidden;
-    }
-
-    /* 左側粉色弧形裝飾 */
-    .queue-item.approved::before,
-    .queue-item.pending::before{
-      content:"";
-      position:absolute;
-      left:-18px;
-      top:50%;
-      transform: translateY(-50%);
-      width: 36px;
-      height: 74px;
-      border-radius: 40px;
-      background: linear-gradient(180deg, #ffd7e0, #f3a2b6);
-      opacity:.9;
-    }
-
-    .queue-left{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      padding-left: 10px; /* 讓裝飾不蓋字 */
-    }
-    .rank{
-      font-weight: 900;
-      color:#6e6e6e;
-      letter-spacing: 1px;
-      min-width: 72px;
-    }
-    .name{
-      font-weight: 900;
-      font-size: 20px;
-      letter-spacing: 1px;
-    }
-
-    .badge{
-      font-weight: 800;
-      font-size: 13px;
-      color:#b24d67;
-      background: #ffe2ea;
-      border: 1px solid rgba(178,77,103,.18);
-      padding: 6px 10px;
-      border-radius: 999px;
-      white-space: nowrap;
-    }
-
-    .empty{
-      color: var(--muted);
-      font-size: 14px;
-      padding: 10px 2px 0;
-    }
-
-    /* 手機更好看 */
-    @media (max-width: 420px){
-      .brand{ font-size: 42px; }
-      .name{ font-size: 18px; }
-      input{ min-width: 100%; }
-    }
-  </style>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="brand">二日畫室</div>
+  <main class="wrap">
+    <!-- 只有大標題在框外 -->
+    <h1 class="brand">二日畫室</h1>
 
-    <div class="card" id="joinCard">
-      <h2>加入排單</h2>
+    <section class="card" id="joinCard">
+      <h2 class="card-title">加入排單</h2>
+
+      <label class="label" for="nickname">請輸入暱稱</label>
+
       <div class="row">
-        <input id="nickname" placeholder="請輸入暱稱（例如：小花）" />
-        <button class="btn" id="joinBtn">加入排單</button>
+        <input id="nickname" class="input" placeholder="例如：小花" autocomplete="off" />
+        <button id="joinBtn" class="btn">加入排單</button>
       </div>
-      <div class="hint">
-        送出後會直接跳到下方「目前排單順序」。<br/>
-        未審核會顯示「待審核」並排在最下面；通過後會進入順位。
-      </div>
-    </div>
 
-    <div class="card" id="queueCard">
-      <h2>目前排單順序</h2>
-      <div id="queueList"></div>
-      <div id="emptyHint" class="empty" style="display:none;">目前還沒有排單資料</div>
-    </div>
-  </div>
+      <p class="hint">送出後會自動跳到下方「目前排單順序」。未審核會顯示待審核並排在最下面。</p>
+    </section>
 
-  <script type="module">
-    import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+    <section class="card" id="queueCard">
+      <h2 class="card-title">目前排單順序</h2>
+      <div id="queueList" class="queue"></div>
+      <p id="emptyHint" class="empty" style="display:none;">目前還沒有排單資料</p>
+    </section>
+  </main>
 
-    // ✅ 你只要改這兩行
-    const SUPABASE_URL = "請貼上你的 SUPABASE_URL";
-    const SUPABASE_ANON_KEY = "請貼上你的 anon key";
-
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    // DOM
-    const input = document.getElementById("nickname");
-    const joinBtn = document.getElementById("joinBtn");
-    const queueList = document.getElementById("queueList");
-    const emptyHint = document.getElementById("emptyHint");
-    const queueCard = document.getElementById("queueCard");
-
-    // ✅ 防呆：如果抓不到元素，就不要讓整頁炸掉
-    if (!input || !joinBtn || !queueList) {
-      console.error("DOM id 不存在：請確認 HTML 有 nickname / joinBtn / queueList");
-    }
-
-    function renderQueue(data) {
-      queueList.innerHTML = "";
-
-      const approved = data.filter(d => d.status === "approved");
-      const pending  = data.filter(d => d.status === "pending");
-
-      if (approved.length === 0 && pending.length === 0) {
-        emptyHint.style.display = "block";
-        return;
-      }
-      emptyHint.style.display = "none";
-
-      // 已通過：有順位
-      approved.forEach((item, index) => {
-        const card = document.createElement("div");
-        card.className = "queue-item approved";
-        card.innerHTML = \`
-          <div class="queue-left">
-            <div class="rank">第 ${index + 1} 位</div>
-            <div class="name">${escapeHtml(item.nickname)}</div>
-          </div>
-        \`;
-        queueList.appendChild(card);
-      });
-
-      // 待審核：排在最下面 + badge
-      pending.forEach(item => {
-        const card = document.createElement("div");
-        card.className = "queue-item pending";
-        card.innerHTML = \`
-          <div class="queue-left">
-            <div class="name">${escapeHtml(item.nickname)}</div>
-          </div>
-          <div class="badge">待審核</div>
-        \`;
-        queueList.appendChild(card);
-      });
-    }
-
-    async function loadQueue() {
-      const { data, error } = await supabase
-        .from("queue")
-        .select("id, nickname, status, created_at")
-        .order("created_at", { ascending: true });
-
-      if (error) {
-        console.error("loadQueue error:", error);
-        alert("讀取排單失敗：請打開 F12 Console 看錯誤訊息");
-        return;
-      }
-      renderQueue(data || []);
-    }
-
-    // 新增排單：pending
-    joinBtn?.addEventListener("click", async () => {
-      const nickname = (input.value || "").trim();
-      if (!nickname) return alert("請輸入暱稱");
-
-      joinBtn.disabled = true;
-
-      const { error } = await supabase
-        .from("queue")
-        .insert([{ nickname, status: "pending" }]);
-
-      joinBtn.disabled = false;
-
-      if (error) {
-        console.error("insert error:", error);
-        alert("送出失敗：請打開 F12 Console 看錯誤訊息");
-        return;
-      }
-
-      input.value = "";
-
-      // ✅ 送出後：重新載入 + 自動跳到「目前排單順序」
-      await loadQueue();
-      queueCard.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-
-    // 安全：避免有人輸入 <script>
-    function escapeHtml(str){
-      return String(str)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
-
-    // 初始載入
-    loadQueue();
-  </script>
+  <!-- ✅ 注意：只引 app.js，不要再把 supabase script 貼在 HTML 下面 -->
+  <script type="module" src="./js/app.js"></script>
 </body>
 </html>
