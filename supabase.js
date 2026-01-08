@@ -1,0 +1,1 @@
+import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';export const supabase=createClient('PASTE_SUPABASE_URL','PASTE_ANON_KEY');
