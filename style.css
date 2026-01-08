@@ -1,47 +1,184 @@
-body{margin:0;font-family:system-ui;background:#fff5f8;color:#333}.header{text-align:center;padding:24px}.status{color:#e07a9c;font-size:14px}.container{max-width:800px;margin:0 auto;padding:16px}.card{background:#fff;border-radius:16px;padding:20px;margin-bottom:20px}input{width:100%;padding:10px;margin-bottom:12px}button{padding:10px 16px;border-radius:8px;border:none;background:#f7a8c5;color:white;cursor:pointer}ul{list-style:none;padding:0}li{background:#ffe3ec;border-radius:8px;padding:10px;margin-bottom:8px}.queue-section {
-  margin-top: 60px;
+:root{
+  --bg:#fdeef3;
+  --card:#fff;
+  --text:#222;
+  --muted:#8b8b8b;
+  --pink:#f1a0b4;
+  --pink2:#ffe2ea;
+  --shadow:0 18px 40px rgba(0,0,0,.08);
+  --radius:18px;
 }
 
-.queue-title {
-  font-size: 1.2rem;
-  margin-bottom: 16px;
+*{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  background: radial-gradient(1200px 600px at 20% 0%, #fff6f9 0%, var(--bg) 60%, #fbe4eb 100%);
+  color:var(--text);
+}
+
+.wrap{
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 26px 18px 46px;
+}
+
+/* ✅ 匡外只留大標 */
+.brand{
+  margin: 8px 0 18px;
+  font-size: 44px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.card{
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  margin: 14px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 小插圖感裝飾（不是 emoji） */
+.card::before{
+  content:"";
+  position:absolute;
+  top:-42px; right:-46px;
+  width:150px; height:150px;
+  background: radial-gradient(circle at 30% 30%, #fff 0 30%, var(--pink2) 31% 70%, transparent 71%);
+  opacity:.85;
+  transform: rotate(10deg);
+}
+
+.card-title{
+  margin: 6px 0 14px;
+  font-size: 18px;
   letter-spacing: 1px;
 }
 
-.queue-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.label{
+  display:block;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 8px;
 }
 
-.queue-item {
-  background: #fff;
-  border-radius: 16px;
-  padding: 16px 20px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
 }
 
-.queue-item.approved {
-  border-left: 6px solid #f6a6c1;
+.input{
+  flex: 1 1 220px;
+  min-width: 220px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.12);
+  padding: 0 12px;
+  font-size: 16px;
+  outline:none;
+}
+.input:focus{
+  border-color: rgba(241,160,180,.9);
+  box-shadow: 0 0 0 4px rgba(241,160,180,.18);
 }
 
-.queue-rank {
-  font-size: 0.9rem;
-  color: #888;
+.btn{
+  height: 44px;
+  padding: 0 16px;
+  border:none;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #f7b2c3, var(--pink));
+  color:#fff;
+  font-weight: 900;
+  letter-spacing: 1px;
+  cursor:pointer;
+  box-shadow: 0 10px 20px rgba(241,160,180,.25);
+}
+.btn:disabled{ opacity:.6; cursor:not-allowed; box-shadow:none; }
+
+.hint{
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
 }
 
-.queue-name {
-  font-size: 1.1rem;
-  font-weight: 500;
+/* 排單列表 */
+.queue{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-top: 8px;
 }
 
-.queue-badge {
-  background: #fde4ec;
-  color: #d45a87;
-  padding: 4px 10px;
+.item{
+  background:#fff;
+  border-radius:16px;
+  padding:14px 14px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.06);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:relative;
+  overflow:hidden;
+}
+
+.item::before{
+  content:"";
+  position:absolute;
+  left:-18px;
+  top:50%;
+  transform:translateY(-50%);
+  width:36px;
+  height:74px;
+  border-radius:40px;
+  background: linear-gradient(180deg, #ffd7e0, var(--pink));
+  opacity:.9;
+}
+
+.left{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding-left: 10px;
+}
+
+.rank{
+  font-weight: 900;
+  color:#6e6e6e;
+  min-width: 72px;
+}
+
+.name{
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.badge{
+  font-weight: 900;
+  font-size: 13px;
+  color:#b24d67;
+  background: #ffe2ea;
+  border: 1px solid rgba(178,77,103,.18);
+  padding: 6px 10px;
   border-radius: 999px;
-  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.empty{
+  color: var(--muted);
+  font-size: 14px;
+  margin: 10px 0 0;
+}
+
+@media (max-width: 420px){
+  .brand{ font-size: 42px; }
+  .name{ font-size: 18px; }
+  .input{ min-width: 100%; }
 }
