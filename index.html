@@ -1,23 +1,11 @@
 <!DOCTYPE html><html lang='zh-Hant'><head><meta charset='UTF-8'><title>二日畫室｜排單系統</title><link rel='stylesheet' href='style.css'></head><body><header class='header'><h1>二日畫室</h1><p class='status'>目前狀態：接稿中</p></header><main class='container'><section class='card'><h2>加入排單</h2><input id='nickname' placeholder='請輸入暱稱'><button id='join'>加入排單</button></section><section class='card'><section class="queue-section">
   <h2 class="queue-title">目前排單順序</h2>
 
-  <div class="queue-list">
-    <!-- approved -->
-    <div class="queue-item approved">
-      <div class="queue-rank">第 1 位</div>
-      <div class="queue-name">小花</div>
-    </div>
+ <section class="queue-section">
+  <h2 class="queue-title">目前排單順序</h2>
 
-    <div class="queue-item approved">
-      <div class="queue-rank">第 2 位</div>
-      <div class="queue-name">星星</div>
-    </div>
-
-    <!-- pending -->
-    <div class="queue-item pending">
-      <div class="queue-name">貓咪</div>
-      <span class="queue-badge">待審核</span>
-    </div>
+  <div class="queue-list" id="queueList">
+    <!-- JS 會在這裡產生卡片 -->
   </div>
 </section>
 
