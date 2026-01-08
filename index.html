@@ -1,11 +1,56 @@
-<!DOCTYPE html><html lang='zh-Hant'><head><meta charset='UTF-8'><title>二日畫室｜排單系統</title><link rel='stylesheet' href='style.css'></head><body><header class='header'><h1>二日畫室</h1><p class='status'>目前狀態：接稿中</p></header><main class='container'><section class='card'><h2>加入排單</h2><input id='nickname' placeholder='請輸入暱稱'><button id='join'>加入排單</button></section><section class='card'><section class="queue-section">
-  <h2 class="queue-title">目前排單順序</h2>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>二日畫室｜排單狀況</title>
 
- <section class="queue-section">
-  <h2 class="queue-title">目前排單順序</h2>
+  <!-- 主樣式 -->
+  <link rel="stylesheet" href="style.css" />
 
-  <div class="queue-list" id="queueList">
+  <!-- 字體（如果你原本有，可以留著） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+
+<body>
+
+  <!-- 🌸 主視覺 / 標題區 -->
+  <header class="hero">
+    <h1 class="site-title">二日畫室</h1>
+    <p class="site-subtitle">目前接單排程狀況</p>
+  </header>
+
+  <!-- ✏️ 下單區 -->
+  <section class="order-section">
+    <label for="nicknameInput" class="order-label">
+      請輸入暱稱
+    </label>
+
+    <div class="order-form">
+      <input
+        type="text"
+        id="nicknameInput"
+        placeholder="例如：小花"
+        autocomplete="off"
+      />
+      <button id="joinBtn">加入排單</button>
+    </div>
+  </section>
+
+  <!-- 📋 排單順序區 -->
+  <section class="queue-section">
+    <h2 class="queue-title">目前排單順序</h2>
+
     <!-- JS 會在這裡產生卡片 -->
-  </div>
-</section>
+    <div class="queue-list" id="queueList"></div>
+  </section>
+
+  <!-- 🌱 之後再接 Supabase，現在只接 UI -->
+  <script src="js/queue-ui.js"></script>
+
+</body>
+</html>
+
+</html>
 
