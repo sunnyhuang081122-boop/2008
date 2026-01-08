@@ -1,1 +1,47 @@
-body{margin:0;font-family:system-ui;background:#fff5f8;color:#333}.header{text-align:center;padding:24px}.status{color:#e07a9c;font-size:14px}.container{max-width:800px;margin:0 auto;padding:16px}.card{background:#fff;border-radius:16px;padding:20px;margin-bottom:20px}input{width:100%;padding:10px;margin-bottom:12px}button{padding:10px 16px;border-radius:8px;border:none;background:#f7a8c5;color:white;cursor:pointer}ul{list-style:none;padding:0}li{background:#ffe3ec;border-radius:8px;padding:10px;margin-bottom:8px}
+body{margin:0;font-family:system-ui;background:#fff5f8;color:#333}.header{text-align:center;padding:24px}.status{color:#e07a9c;font-size:14px}.container{max-width:800px;margin:0 auto;padding:16px}.card{background:#fff;border-radius:16px;padding:20px;margin-bottom:20px}input{width:100%;padding:10px;margin-bottom:12px}button{padding:10px 16px;border-radius:8px;border:none;background:#f7a8c5;color:white;cursor:pointer}ul{list-style:none;padding:0}li{background:#ffe3ec;border-radius:8px;padding:10px;margin-bottom:8px}.queue-section {
+  margin-top: 60px;
+}
+
+.queue-title {
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+
+.queue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.queue-item {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.queue-item.approved {
+  border-left: 6px solid #f6a6c1;
+}
+
+.queue-rank {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.queue-name {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.queue-badge {
+  background: #fde4ec;
+  color: #d45a87;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+}
